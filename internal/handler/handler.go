@@ -9,16 +9,16 @@ type Shortener interface {
 
 type Handler struct {
 	sh      Shortener
-	baseUrl string
+	baseURL string
 }
 
-func NewHandler(shortener Shortener, baseUrl string) *Handler {
+func NewHandler(shortener Shortener, baseURL string) *Handler {
 	return &Handler{
 		sh:      shortener,
-		baseUrl: baseUrl,
+		baseURL: baseURL,
 	}
 }
 
 func (h *Handler) FormatURL(code string) string {
-	return fmt.Sprintf("%s/%s", h.baseUrl, code)
+	return fmt.Sprintf("%s/%s", h.baseURL, code)
 }

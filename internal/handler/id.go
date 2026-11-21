@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-func (h *Handler) Id(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) ID(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Only GET requests are allowed!", http.StatusBadRequest)
 		return

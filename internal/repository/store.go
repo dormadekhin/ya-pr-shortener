@@ -8,20 +8,20 @@ import (
 type Store struct {
 	mu          sync.RWMutex
 	linksByCode map[string]model.Link
-	codesByUrl  map[string]string
+	codesByURL  map[string]string
 }
 
 func NewStore() *Store {
 	return &Store{
 		linksByCode: make(map[string]model.Link),
-		codesByUrl:  make(map[string]string),
+		codesByURL:  make(map[string]string),
 	}
 }
 
 func (st *Store) Add(new model.Link) (addedCode string, added bool) {
 	st.mu.Lock()
 	defer st.mu.Unlock()
-	savedCode, hasCode := st.codesByUrl[new.Href]
+	savedCode, hasCode := st.codesByURL[new.Href]
 	if hasCode {
 		return savedCode, false
 	}
@@ -30,7 +30,7 @@ func (st *Store) Add(new model.Link) (addedCode string, added bool) {
 		return "", false
 	}
 	st.linksByCode[new.Code] = new
-	st.codesByUrl[new.Href] = new.Code
+	st.codesByURL[new.Href] = new.Code
 	return new.Code, true
 }
 

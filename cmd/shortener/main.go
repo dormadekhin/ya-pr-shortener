@@ -12,10 +12,10 @@ import (
 
 func main() {
 	port := ":8080"
-	baseUrl := fmt.Sprintf("http://localhost%s", port)
+	baseURL := fmt.Sprintf("http://localhost%s", port)
 	store := repository.NewStore()
 	shortener := service.NewShortener(store)
-	routerHandler := handler.NewHandler(shortener, baseUrl)
+	routerHandler := handler.NewHandler(shortener, baseURL)
 	err := http.ListenAndServe(port, router.NewRouter(routerHandler))
 	if err != nil {
 		log.Fatalf("server error: %v", err)
